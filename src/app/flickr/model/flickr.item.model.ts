@@ -1,16 +1,18 @@
+import { Input } from '@angular/core';
 import { AbstractCommonModel } from '../../common/model/abstract.common.model';
 
 export class FlickrItemModel extends AbstractCommonModel { 
 
-    private title : string;
-    private link : string;
-    private media : string;
-    private date_taken : Date;
-    private description : string;
-    private published : Date;
-    private author : string;
-    private author_id : Number;
-    private tags : string;
+    @Input() private title : string;
+    @Input() private link : string;
+    @Input() private media : string;
+    @Input() private date_taken : Date;
+    @Input() private description : string;
+    @Input() private published : Date;
+    @Input() private author : string;
+    @Input() private author_id : Number;
+    @Input() private tags : string;
+    @Input() private author_link : string;
 
     constructor () {
         super()
@@ -47,6 +49,9 @@ export class FlickrItemModel extends AbstractCommonModel {
                 break;
             case "tags":
                 result = this.tags
+                break
+            case "author_link":
+                result = this.author_link
                 break
             default:
                 break;
@@ -107,7 +112,7 @@ export class FlickrItemModel extends AbstractCommonModel {
                 this.changed(propertyName, type,  changes);
                 break;
             case "author":
-                this.date_taken = value;
+                this.author = value;
                 changes = [{
                     propertyName: propertyName,
                     value: value
@@ -115,7 +120,7 @@ export class FlickrItemModel extends AbstractCommonModel {
                 this.changed(propertyName, type,  changes);
                 break;
             case "author_id":
-                this.date_taken = value;
+                this.author_id = value;
                 changes = [{
                     propertyName: propertyName,
                     value: value
@@ -123,7 +128,15 @@ export class FlickrItemModel extends AbstractCommonModel {
                 this.changed(propertyName, type,  changes);
                 break;
             case "tags":
-                this.date_taken = value;
+                this.tags = value;
+                changes = [{
+                    propertyName: propertyName,
+                    value: value
+                }];
+                this.changed(propertyName, type,  changes);
+                break;
+            case "author_link":
+                this.author_link = value;
                 changes = [{
                     propertyName: propertyName,
                     value: value

@@ -1,0 +1,113 @@
+
+$id : flickr-module;
+
+/* Image Options */
+$image-crop-width-desktop : 140px;
+$image-crop-height-desktop : 140px;
+$image-dim-width-desktop : 140px;
+$image-dim-height-desktop: 140px;
+$image-dim-width-mobile : 200px;
+$image-dim-height-mobile: 200px;
+$image-background-size: cover;
+$image-background-repeat: no-repeat;
+$image-border-radius: 100%;
+$image-border: 3px dashed rgb(226, 225, 225);
+$image-cursor: pointer;
+
+/* Media Queries */
+$test-min: 799px;
+$test-max: 800px;
+$tiny-max: 575px;
+$tiny-min: 200px;
+
+/* Text options */
+$text-align-mobile: center;
+$bottom-content-position-desktop: absolute;
+$bottom-content-position-mobile: initial;
+
+h2 {
+    margin-top: 10px;
+}
+
+img {
+    width: $image-dim-width-desktop;
+    height: $image-crop-height-desktop;
+    background-repeat: $image-background-repeat;
+    background-size: $image-background-size;
+    border-radius: $image-border-radius;
+    border: $image-border;
+    &:hover {
+        cursor: $image-cursor;
+        opacity: 0.9;
+    }
+}
+
+.search-bar {
+    margin: 20px auto;
+}
+
+.bottom-content {
+    position: $bottom-content-position-desktop;
+    bottom: 15%;
+    width: inherit;
+}
+
+.bottom-content .mobile-show {
+    display: none;
+}
+
+
+
+@media (max-width: #{$test-max}) {
+    .bottom-content .mobile-show {
+        display: block;
+    }
+
+    .bottom-content .mobile-hide {
+        display: none;
+    }
+
+    .bottom-content {
+       position: $bottom-content-position-mobile;
+    }
+}
+
+@media (min-width: #{$test-min}) {
+
+    .image-crop{
+        height: $image-crop-height-desktop;
+        overflow: hidden;
+    }
+
+    img  {
+        max-width: $image-dim-width-desktop;
+    }
+}
+
+
+@media (min-width: $tiny-min) and (max-width: #{$tiny-max}) {
+
+    img {
+        width: $image-dim-width-mobile;
+        height: $image-dim-height-mobile;
+        margin: 0 auto;
+    }
+
+    .image-crop {
+        text-align: $text-align-mobile;
+    }
+
+    p, a, h2 {
+        text-align: $text-align-mobile;
+    }
+}
+
+
+/* Custom Media Queries */
+
+@media (min-width: 576px) and (max-width: 675px) {
+    img {
+        width: 100px;
+        height: 100px;
+    }
+}

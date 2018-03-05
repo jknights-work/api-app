@@ -1,0 +1,25 @@
+    <div class="modal-header flick-modal">
+        <h4 class="modal-title">{{title}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body flickr-modal">
+        <div class="row">
+          <div class="col-sm-12">
+                <div [innerHTML]="description"></div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <p><strong>Author:</strong> {{ author }}</p>
+                <p><strong>Author Id:</strong> {{ author_id }}</p>
+                <p><strong>Published:</strong> {{ published }}</p>
+                <p><strong>Date Taken:</strong> {{ date_taken }}</p>
+                <p><strong>Tags:</strong> <code>{{ tags }}</code></p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer flickr-modal">
+        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    </div>

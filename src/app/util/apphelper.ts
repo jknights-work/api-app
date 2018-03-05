@@ -18,4 +18,14 @@ export class AppHelper {
         }
         return result; 
     }
+
+    public formatDate (str : string ) : string {
+        let result = "";
+        if (!this.isEmpty(str)) {
+            let date = new Date(str);
+            result = date.toLocaleDateString("en-GB", { year: 'numeric', month: 'long', day: '2-digit' }) + 
+                " at " + date.getHours() + ":" + date.getMinutes();
+        }
+        return result;
+    }
 }

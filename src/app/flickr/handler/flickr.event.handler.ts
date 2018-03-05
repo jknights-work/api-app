@@ -57,22 +57,34 @@ export class FlickrEventHandler implements CommonEventHandler {
 
     private setItems (items : Array<any>) : Array<FlickrItemModel> {
         let result = new Array<FlickrItemModel>();
+        let that = this;
         if (items.length > 0) {
             items.forEach(function (item) {
                 let model = new FlickrItemModel();
-                model.set("title", item["title"], this);
+                model.set("title", item["title"] ? item["title"] : "Untitled", this);
                 model.set("link", item["link"], this);
                 model.set("media", item["media"], this);
                 model.set("date_taken", new Date(item["date_taken"]), this);
                 model.set("description", item["description"], this);
-                model.set("published", new Date(item["published"]), this);
+                model.set("published", that.helper.formatDate(item["published"]), this);
                 model.set("author", item["author"], this);
                 model.set("author_id", Number.parseInt(item["author_id"]), this);
                 model.set("tags", item["tags"], this);
+                model.set("author_link", that.createLink(item["link"]), this);
                 result.push(model);
             })
         }
         return result;
     }
+
+    private createLink (link : string) : string {
+        let result = "";
+        if (!this.helper.isEmpty(link)) {
+            let split = link.split("/");
+            result = split[0] + "//" + split[1] + "/" + split[2] + "/" + split[3] + "/" + split[4] + "/";
+        }
+        return result;
+    }
+
 
 }

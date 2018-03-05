@@ -4,11 +4,19 @@
   <meta charset="utf-8">
   <title>FlickrApp</title>
   <base href="/">
-  <!--<script src="https://api.flickr.com/services/feeds/photos_public.gne?tags=space&amp;tagmode=all&amp;format=json"></script>-->
+  <script >
+    window.___gcfg = {
+      lang: 'zh-CN',
+      parsetags: 'onload'
+    };
+</script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-<body>
+<body id="flickr-app">
+  <center><div class="g-plusone"></div></center>
   <app-root></app-root>
+  
 </body>
 </html>

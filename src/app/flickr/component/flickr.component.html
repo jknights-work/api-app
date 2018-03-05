@@ -1,5 +1,31 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div>
-  Test
-</div>
+<ul class="nav justify-content-center search-bar">
+    <li class="nav-item">
+        <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="Search Title..." aria-describedby="search-side">
+    </li>
+</ul>
+
+<div *ngIf="model.items !== null" id="flickr-module" class="card">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" *ngFor="let item of model.items | filter : searchText">
+          <div class="row justify-content-md-center">
+            <div class="col-lg-3 col-sm-3 image-crop" (click)="openModal(item)">
+              <img [defaultImage]="default_img" [lazyLoad]="item.media.m" alt="{{ item.title }}" class="{{ img_class }}"/>
+            </div>
+            <div class="col-lg-9 col-sm-9">
+                <h2> <a href="#" (click)="openModal(item)">{{ (item.title.length > 40)? (item.title | slice:0:40)+'...':(item.title)  }}</a> </h2>
+              <div class="row bottom-content">
+                <div class="col-sm-12 mobile-show"><p>Published: {{ item.published }}<p></div>
+              </div>
+              <div class="row bottom-content">
+                  <div class="col-md-3 col-sm-6"><p><a href="{{ item.author_link }}" target="_blank">Post Author</a></p></div>
+                  <div class="col-md-6 mobile-hide"><p>Published: {{ item.published }}<p></div>
+                  <div class="col-md-3 col-sm-6"><p><a href="{{ item.link }}" target="_blank">View on Flickr</a></p></div>
+              </div>
+            </div>
+          </div>
+      </li>
+    </ul>
+  </div>
+  
 
