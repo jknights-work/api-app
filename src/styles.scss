@@ -40,3 +40,10 @@ p, a, h1, h2, h3, h4 {
     }
 }
 
+
+/* Override Bootstrap */
+
+#flickr-app .list-group,
+.list-group-item{
+    display:block;
+}
