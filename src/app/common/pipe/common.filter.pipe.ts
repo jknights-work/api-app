@@ -11,7 +11,7 @@ export class CommonFilterPipe implements CommonPipe <CommonModel> {
 
     constructor (private helper : AppHelper) {}
 
-    public transform(items: CommonModel[], searchText: string, el : string): any[] {
+    public transform(items: CommonModel[], searchText: string, el : string): Array<CommonModel> {
         let result = new Array<CommonModel>();
         let propertyName = "title";
         if (this.helper.isEmpty(searchText)) {
@@ -23,6 +23,22 @@ export class CommonFilterPipe implements CommonPipe <CommonModel> {
                     result.push(it);
                 }
             });
+        }
+        return result;
+    }
+
+    //To Implement//
+    public getPropertyNameByInstance (model : CommonModel) : string {
+        let result = null;
+        if (this.helper.isNull(model)) {
+            
+            switch (model.constructor.name) {
+                case "FlickrItemModel":
+                    result = "title";
+                    break;
+                default:
+                    break;
+            }
         }
         return result;
     }

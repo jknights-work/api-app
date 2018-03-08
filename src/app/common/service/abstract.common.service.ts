@@ -47,7 +47,7 @@ export abstract class AbstractCommonService implements CommonService {
                     this.jsonpCall();
                     break;
                 case "json":
-                    this.jsonCall();
+                    this.jsonCall("");
                     break;
                 default:
                     console.error("No request type is configured");
@@ -68,9 +68,13 @@ export abstract class AbstractCommonService implements CommonService {
         }
     }
 
-    public jsonCall () {
+    public jsonCall (uri : string) {
         try {
-            this.http.get(this.getURI(), this.configuration.getHttpHeaderOptions()).map(
+            let resource = this.getURI();
+            if (uri) {
+                resource = uri;
+            }
+            this.http.get(resource, this.configuration.getHttpHeaderOptions()).map(
                 (res) => res
                 ).subscribe(
                 (data) => {this.processResponse(data)}, 

@@ -28,4 +28,12 @@ export class AppHelper {
         }
         return result;
     }
+
+    public isValidArray (arr) : Boolean {
+        let result = false;
+        if (arr.isArray() && arr.length >= 0) {
+            result = true;
+        }
+        return result;
+    }
 }
