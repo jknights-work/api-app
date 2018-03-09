@@ -10,27 +10,28 @@
   </div>
     
 
-<!--<div *ngIf="model.items !== null" id="flickr-module" class="card">
+<div *ngIf="model.items !== null" id="itunes-module" class="card">
     <ul class="list-group list-group-flush">
-      <li class="list-group-item" *ngFor="let item of model.items | filter : searchText">
+      <li class="list-group-item" *ngFor="let item of model.items">
           <div class="row justify-content-md-center">
-            <div class="col-lg-3 col-sm-3 image-crop" (click)="openModal(item)">
-              <img [defaultImage]="default_img" [lazyLoad]="item.media.m" alt="{{ item.title }}" class="{{ img_class }}"/>
+            <div class="col-lg-3 col-sm-3 image-crop">
+              <img [defaultImage]="default_img" [lazyLoad]="item.artworkUrl" alt="{{ item.artworkUrl }}" class="{{ img_class }}"/>
             </div>
             <div class="col-lg-9 col-sm-9">
-                <h2> <a href="#" (click)="openModal(item)">{{ (item.title.length > 40)? (item.title | slice:0:40)+'...':(item.title)  }}</a> </h2>
+                <h2> <a href="#">{{ (item.artistName.length > 40)? (item.artistName | slice:0:40)+'...':(item.artistName)  }}</a> </h2>
+                <p><small> {{item.trackName}} </small></p>
               <div class="row bottom-content">
-                <div class="col-sm-12 mobile-show"><p>Published: {{ item.published }}<p></div>
+                <div class="col-sm-12 mobile-show"><p>Released: {{ item.releaseDate }}<p></div>
               </div>
               <div class="row bottom-content">
-                  <div class="col-md-3 col-sm-6"><p><a href="{{ item.author_link }}" target="_blank">Post Author</a></p></div>
-                  <div class="col-md-6 mobile-hide"><p>Published: {{ item.published }}<p></div>
-                  <div class="col-md-3 col-sm-6"><p><a href="{{ item.link }}" target="_blank">View on Flickr</a></p></div>
+                  <div class="col-md-3 col-sm-6"><p><a href="{{ item.trackViewUrl }}" target="_blank">Go to track</a></p></div>
+                  <div class="col-md-6 mobile-hide"><p>Released: {{ item.releaseDate }}<p></div>
+                  <div class="col-md-3 col-sm-6"><p><a href="{{ item.previewUrl }}" target="_blank">Preview</a></p></div>
               </div>
             </div>
           </div>
       </li>
     </ul>
-  </div>-->
+  </div>
   
 

@@ -7,6 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Jsonp } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
  
 const jsonFlickrFeed : Function = function () {}
  
@@ -79,6 +80,30 @@ export abstract class AbstractCommonService implements CommonService {
                 ).subscribe(
                 (data) => {this.processResponse(data)}, 
             );
+        } catch (e) {
+            console.error ("Unable to get response ", e);
+        }
+    }
+
+    public jsonCallViaPromise (uri : string) {
+        try {
+            
+            let resource = this.getURI();
+            if (uri) {
+                resource = uri;
+            }
+            let promise = new Promise((resolve, reject) => 
+                this.http.get(uri)
+                .toPromise()
+                .then(
+                    res => {
+                        {this.processResponse(res["results"])}
+                    }
+                ).catch(e => {
+                    console.log(e);
+                })
+            )
+            
         } catch (e) {
             console.error ("Unable to get response ", e);
         }

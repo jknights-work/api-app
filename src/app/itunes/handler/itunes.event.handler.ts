@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { CommonEventHandler } from '../../common/handler/common.event.handler';
 import { CommonModel } from '../../common/model/common.model';
 import { AppHelper } from '../../util/apphelper';
-//import { FlickrRequestModel } from '../model/flickr.request.model';
-//import { FlickrItemModel } from '../model/flickr.item.model';
+import { ItunesItemModel } from '../model/itunes.item.model';
+import { ItunesRequestModel } from '../model/itunes.request.model';
 
 @Injectable()
 export class ItunesEventHandler implements CommonEventHandler {
@@ -22,13 +22,13 @@ export class ItunesEventHandler implements CommonEventHandler {
         console.log("change default");
         
         if (!this.helper.isNull(data)) {
-            //if (txData instanceof CommonModel) {
+            if (txData instanceof ItunesRequestModel) {
                 try {
-                
-                } catch (e) {
-                    console.error("Cannot set flickr request model", e);
+                        txData.set("items", this.setItems(data), this);
+                    } catch (e) {
+                        console.error("Cannot set itunes request model", e);
                 }
-            //}
+            }
         }
     }
 
@@ -46,6 +46,30 @@ export class ItunesEventHandler implements CommonEventHandler {
                 default:
                     this.default(data, txData);
             }
+    }
+
+    /** Helper Funtions */
+
+    private setItems (items : Array<any>) : Array<ItunesItemModel> {
+        let result = new Array<ItunesItemModel>();
+        let that = this;
+        if (items.length > 0) {
+            items.forEach(function (item) {
+                let model = new ItunesItemModel();
+                model.set("artistName", item["artistName"] ? item["artistName"] : "Untitled", this);
+                model.set("artistViewUrl", item["artistViewUrl"], this);
+                model.set("artworkUrl", item["artworkUrl100"], this);
+                model.set("releaseDate", new Date(item["releaseDate"]), this);
+                model.set("collectionName", item["collectionName"], this);
+                model.set("previewUrl", item["previewUrl"], this);
+                model.set("primaryGenreName", item["primaryGenreName"], this);
+                model.set("collectionPrice", Number.parseInt(item["collectionPrice"]), this);
+                model.set("trackName", item["trackName"], this);
+                model.set("trackViewUrl", item["trackViewUrl"], this);
+                result.push(model);
+            })
+        }
+        return result;
     }
 
     /** Helper Funtions */

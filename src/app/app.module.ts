@@ -19,6 +19,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { Routes, RouterModule } from '@angular/router';
 import { ItunesService } from './itunes/service/itunes.service';
 import { ItunesConfiguration } from './itunes/configuration/itunes.configuration';
+import { ItunesRequestModel } from './itunes/model/itunes.request.model';
 
 const routes: Routes = [
   { path: 'itunes', component: ItunesComponent }
@@ -49,6 +50,7 @@ const routes: Routes = [
     FlickrConfiguration,
     FlickrRequestModel,
     FlickrModal,
+    ItunesRequestModel,
     ItunesService,
     ItunesConfiguration,
   ],

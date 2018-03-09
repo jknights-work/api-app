@@ -28,7 +28,12 @@ export class ItunesService extends AbstractCommonService {
     }
 
     public jsonCall (uri : string) {
-        super.jsonCall(this.customConfig.getURIwithParams(this.searchTerms));
+        //super.jsonCall(this.customConfig.getURIwithParams(this.searchTerms));
+        this.jsonCallviaPromise(this.customConfig.getURIwithParams(this.searchTerms));
+    }
+
+    public jsonCallviaPromise(uri : string) {
+        super.jsonCallViaPromise(uri);
     }
 
     public processResponse (data) {

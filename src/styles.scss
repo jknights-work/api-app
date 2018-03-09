@@ -8,6 +8,17 @@
     }
 }
 
+@mixin changeBgColour ($background-colour, $class) {
+    #{$class} {
+        background-color: $background-colour;
+    }
+}
+
+
+@mixin doSomething ($var1, $class) {
+    
+}
+
 $body-font : 'Roboto';
 $body-colour: #fff;
 $anchor-colour: #1d5997;
@@ -18,6 +29,9 @@ $heading2-size: 1.4em;
 
 
 @include font("Roboto", "https://fonts.googleapis.com/css?family=Roboto:400,700");
+@include changeBgColour(#aaa, ".green");
+@include changeBgColour(blue, ".blue");
+@include changeBgColour(#000, ".black");
 
 body {
     background: $body-colour;
