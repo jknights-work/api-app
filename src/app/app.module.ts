@@ -20,6 +20,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { ItunesService } from './itunes/service/itunes.service';
 import { ItunesConfiguration } from './itunes/configuration/itunes.configuration';
 import { ItunesRequestModel } from './itunes/model/itunes.request.model';
+import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
+import { MapBoxComponent } from './mapbox/component/mapbox.component';
+import * as MapBox from 'mapbox-gl';
 
 const routes: Routes = [
   { path: 'itunes', component: ItunesComponent }
@@ -32,7 +35,8 @@ const routes: Routes = [
     FlickrModal,
     FlickrModalContent,
     CommonFilterPipe,
-    ItunesComponent
+    ItunesComponent,
+    MapBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,11 @@ const routes: Routes = [
     NgbModule.forRoot(),
     FormsModule,
     LazyLoadImageModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    NgxMapboxGLModule.forRoot({
+      accessToken: 'pk.eyJ1IjoianJrbmlnaHRzIiwiYSI6ImNqaHZvdWU3ODBhd3YzcW1tcmhxMXdybjcifQ.rS1bbZqHn8upLv73YJmdWQ', // Can also be set per map (accessToken input of mgl-map)
+      geocoderAccessToken: 'TOKEN' // Optionnal, specify if different from the map access token, can also be set per mgl-geocoder (accessToken input of mgl-geocoder)
+    })
   ],
   providers: [
     AppHelper, 

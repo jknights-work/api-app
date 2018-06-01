@@ -1,0 +1,20 @@
+@import '../../../../node_modules/mapbox-gl/dist/mapbox-gl.css';
+mgl-map {
+    height: 100%;
+    width: 100%;
+  }
+
+  .mapboxgl-canvas-container {
+    //height: 3000px;
+  }
+
+  h2 {
+    text-align: center;
+    margin: 20px auto;
+  }
+
+  .fill-height {
+    //  height: 80vh;
+  }
+
+  

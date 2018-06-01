@@ -1,30 +1,43 @@
 import { CommonConfiguration } from "../../common/configuration/common.configuration";
-import { FlickrEventHandler } from '../handler/flickr.event.handler';
+import { MapBoxEventHandler } from '../handler/mapbox.event.handler';
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
-import { AppHelper } from '../../util/apphelper'; 
+import { AppHelper } from '../../util/apphelper';
 
 //change these values
-const uri =  "https://api.flickr.com/services/feeds/photos_public.gne?tags=space&tagmode=all&format=json&jsoncallback=JSONP_CALLBACK";
+const uri =  "https://itunes.apple.com/search?term=";
 const format = "application/json";
-const entityType = "FLICKR";
+const entityType = "ITUNES";
 const defaultEvent = new Map<String, String>();
 const eventTypes = ["change", "default", "set"];
-const requestType = "JSONP";
+const requestType = "JSON";
 const httpOptions = {
     headers: new HttpHeaders({ 
-      'Access-Control-Allow-Origin': 'https://api.flickr.com',
+      'Access-Control-Allow-Origin': 'https://itunes.apple.com',
       'Access-Control-Request-Method' : 'GET'
     })}
-const callback = "jsonFlickrFeed";
+const callback = "itunesSearchFeed";
 
 @Injectable()
-export class FlickrConfiguration implements CommonConfiguration {
+export class MapBoxConfiguration implements CommonConfiguration {
 
     constructor (private helper : AppHelper) {}
 
     public getURI() : string {
         return uri;
+    }
+
+    public getURIwithParams (params : Array<string>) : string {
+        let result = this.getURI();
+        if (result) {
+            params.forEach(function (param, index) {
+                result += param;
+                if (index !== params.length -1) {
+                    result += "+";
+                }
+            });
+        }
+        return result;
     }
 
     public getFormat() : string {
@@ -51,8 +64,8 @@ export class FlickrConfiguration implements CommonConfiguration {
         return entityType;
     }
 
-    public getEventHandler() : FlickrEventHandler {
-        return new FlickrEventHandler(new AppHelper());
+    public getEventHandler() : MapBoxEventHandler {
+        return new MapBoxEventHandler(new AppHelper());
     }
 
     public verifyEvent(eventType) : boolean {
